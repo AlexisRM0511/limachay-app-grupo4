@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 const double margin = 6.0;
 
-void main() => runApp(MainHome());
-
 class MainHome extends StatefulWidget {
   @override
   _MainHomeState createState() => _MainHomeState();
