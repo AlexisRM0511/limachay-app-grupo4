@@ -19,10 +19,6 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       home: Scaffold(
-        /*appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),*/
-
         body: Column(
           children: [
             Text("\n\n\n"),
