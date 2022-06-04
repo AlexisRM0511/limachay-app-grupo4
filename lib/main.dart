@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:limachayapp/pages/Sue.dart';
-import 'package:limachayapp/pages/SueDetail.dart';
-import 'package:limachayapp/components/MainHome.dart';
-import 'package:limachayapp/auth/login.dart';
-import 'package:limachayapp/auth/Sigin.dart';
+import 'package:limachayapp/pages/sue.dart';
+import 'package:limachayapp/pages/sue_detail.dart';
+import 'package:limachayapp/components/main_home.dart';
+import 'package:limachayapp/auth/log_in.dart';
+import 'package:limachayapp/auth/sign_in.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Limachay());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Limachay extends StatelessWidget {
+  const Limachay({Key? key}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
