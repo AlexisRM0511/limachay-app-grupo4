@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 const double margin = 5.0;
 
-void main() => runApp(Login());
+void main() => runApp(MyLogin());
 
-class Login extends StatefulWidget {
+class MyLogin extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _MyLoginState createState() => _MyLoginState();
 }
 
-class _LoginState extends State<Login> {
+class _MyLoginState extends State<MyLogin> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

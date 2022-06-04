@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
-class SuiDetail extends StatelessWidget {
+class SueDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Delito Detalle',
         theme: ThemeData(primarySwatch: Colors.blue),
-        home: const SuiDetailPage(title: 'Flutter Demo Home Page'));
+        home: const SueDetailPage(title: 'Flutter Demo Home Page'));
   }
 }
 
-class SuiDetailPage extends StatefulWidget {
-  const SuiDetailPage({Key? key, required this.title}) : super(key: key);
+class SueDetailPage extends StatefulWidget {
+  const SueDetailPage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  _SuiDetailPageState createState() => _SuiDetailPageState();
+  _SueDetailPageState createState() => _SueDetailPageState();
 }
 
-class _SuiDetailPageState extends State<SuiDetailPage> {
+class _SueDetailPageState extends State<SueDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

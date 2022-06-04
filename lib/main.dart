@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:limachayapp/pages/Sue.dart';
+import 'package:limachayapp/pages/SueDetail.dart';
+import 'package:limachayapp/components/MainHome.dart';
+import 'package:limachayapp/auth/login.dart';
+import 'package:limachayapp/auth/Sigin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +26,10 @@ class MyApp extends StatelessWidget {
           body: Container(
             padding: const EdgeInsets.all(20),
             // child: Sue(),
+            // child: SueDetail(),
+            // child: MainHome(),
+            child: MyLogin(),
+            // child: Sign(),
           )
         )
       )

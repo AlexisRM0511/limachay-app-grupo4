@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 const double margin = 6.0;
 
-void main() => runApp(MyApp());
+void main() => runApp(MainHome());
 
-class MyApp extends StatefulWidget {
+class MainHome extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _MainHomeState createState() => _MainHomeState();
 
 }
 
-class _MyAppState extends State<MyApp> {
+class _MainHomeState extends State<MainHome> {
   int _paginaActual = 0;
 
   @override
