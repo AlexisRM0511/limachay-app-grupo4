@@ -1,120 +1,131 @@
 import 'package:flutter/material.dart';
+import 'package:limachayapp/pages/sue_detail.dart';
 
 const double margin = 8.0;
 
 class Sue extends StatefulWidget {
+  const Sue({Key? key}) : super(key: key);
+
   @override
-  _SueState createState() => _SueState();
+  SueState createState() => SueState();
 }
 
-class _SueState extends State<Sue> {
+class SueState extends State<Sue> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SueForm(),
-            ],
-          )
-        )
-      )
-    );
+        body: SingleChildScrollView(
+            child: Center(
+                child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: const [SueForm()],
+    ))));
   }
 }
 
 class SueForm extends StatefulWidget {
+  const SueForm({Key? key}) : super(key: key);
+
   @override
-  _SueFormState createState() => _SueFormState();
+  SueFormState createState() => SueFormState();
 }
 
-class _SueFormState extends State<SueForm> {
+class SueFormState extends State<SueForm> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-      child: Form(
-          child: Column(
-              children: [
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 5, top: margin, bottom: margin),
-                  child: const Text(
-                    'Denunciar',
-                    style: TextStyle(
-                      fontSize: 27,
-
-                    ),
-                  ),
-                ),
-                TextInput("Delito"),
-                TextArea("Descripción"),
-                GroupInput("Lugar", const Icon(Icons.location_on)),
-                GroupInput("Fecha y hora", const Icon(Icons.calendar_today)),
-                AddButton("Evidencias", const Icon(Icons.add_a_photo, color: Colors.grey)),
-                CustomCheckbox("Conozco al denunciado"),
-                MainButton("Denunciar", const Color(0xFF79E070)),
-
-              ]
-          )
-      )
-    );
-
+    return Form(
+        key: _formKey,
+        child: Column(children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            padding:
+                const EdgeInsets.only(left: 5, top: margin, bottom: margin),
+            child: const Text(
+              'Denunciar',
+              style: TextStyle(
+                fontSize: 27,
+              ),
+            ),
+          ),
+          textInput("Delito"),
+          textArea("Descripción"),
+          groupInput("Lugar", const Icon(Icons.location_on)),
+          groupInput("Fecha y hora", const Icon(Icons.calendar_today)),
+          addButton(
+              "Evidencias", const Icon(Icons.add_a_photo, color: Colors.grey)),
+          customCheckbox("Conozco al denunciado"),
+          submitBtn("Denunciar", const Color(0xFF79E070), _formKey, context),
+        ]));
   }
 }
 
-Widget TextInput(String label) {
-  return Container(
-    margin: EdgeInsets.only(top: margin, bottom: margin),
-    child: TextFormField(
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: label
-      )
-    ),
-  );
-}
-
-Widget TextArea(String label) {
-  return Container(
-    margin: EdgeInsets.only(top: margin, bottom: margin),
-    child: TextFormField(
-      keyboardType: TextInputType.multiline,
-      maxLines: 5,
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        labelText: label,
-      ),
-    )
-  );
-}
-
-Widget GroupInput(String label, Widget icon) {
+Widget textInput(String label) {
   return Container(
     margin: const EdgeInsets.only(top: margin, bottom: margin),
-    child: TextField(
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        labelText: label,
-        suffixIcon: icon
-      ),
+    child: TextFormField(
+      decoration:
+          InputDecoration(border: const OutlineInputBorder(), labelText: label),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Ingrese algún texto';
+        }
+        return null;
+      },
     ),
   );
 }
 
-Widget AddButton(String label, Widget icon) {
+Widget textArea(String label) {
   return Container(
-      margin: EdgeInsets.only(top: margin, bottom: margin),
+      margin: const EdgeInsets.only(top: margin, bottom: margin),
+      child: TextFormField(
+        keyboardType: TextInputType.multiline,
+        maxLines: 5,
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          labelText: label,
+        ),
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Ingrese algún texto';
+          }
+          return null;
+        },
+      ));
+}
+
+Widget groupInput(String label, Widget icon) {
+  return Container(
+    margin: const EdgeInsets.only(top: margin, bottom: margin),
+    child: TextFormField(
+      decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          labelText: label,
+          suffixIcon: icon),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Ingrese algún texto';
+        }
+        return null;
+      },
+    ),
+  );
+}
+
+Widget addButton(String label, Widget icon) {
+  return Container(
+      margin: const EdgeInsets.only(top: margin, bottom: margin),
       alignment: Alignment.centerLeft,
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: margin/2),
+            margin: const EdgeInsets.only(bottom: margin / 2),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text(label, style: TextStyle(color: Colors.grey, fontSize: 16)),
+              child: Text(label,
+                  style: const TextStyle(color: Colors.grey, fontSize: 16)),
             ),
           ),
           Align(
@@ -123,8 +134,7 @@ Widget AddButton(String label, Widget icon) {
               decoration: const ShapeDecoration(
                 shape: RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey, width: 1.0),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))
-                ),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 color: Colors.transparent,
               ),
               child: IconButton(
@@ -136,34 +146,40 @@ Widget AddButton(String label, Widget icon) {
             ),
           )
         ],
-      )
-  );
+      ));
 }
 
-Widget CustomCheckbox(String label) {
+Widget customCheckbox(String label) {
   return Container(
-    margin: EdgeInsets.only(top: margin, bottom: margin),
-    child: CheckboxListTile(
-      contentPadding: EdgeInsets.all(0),
-      title: Text(label, style: TextStyle(color: Colors.grey)),
-      value: false,
-      onChanged: (bool? value) {},
-    )
-  );
+      margin: const EdgeInsets.only(top: margin, bottom: margin),
+      child: CheckboxListTile(
+        contentPadding: const EdgeInsets.all(0),
+        title: Text(label, style: const TextStyle(color: Colors.grey)),
+        value: false,
+        onChanged: (bool? value) {},
+      ));
 }
 
-Widget MainButton(String label, Color color) {
+Widget submitBtn(
+    String label, Color color, GlobalKey<FormState> key, BuildContext context) {
   return Container(
-    margin: EdgeInsets.only(top: margin, bottom: margin),
-    child: TextButton(
-        child: Text(label),
-        onPressed: () {},
-        style: TextButton.styleFrom(
-          minimumSize: Size(double.infinity, 50),
-          padding: EdgeInsets.all(16.0),
-          primary: Colors.black,
-          backgroundColor: color,
-        )
-    )
-  );
+      margin: const EdgeInsets.only(top: margin, bottom: margin),
+      child: TextButton(
+          onPressed: () {
+            if (key.currentState!.validate()) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Processing Data')));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SueDetail()),
+              );
+            }
+          },
+          style: TextButton.styleFrom(
+            minimumSize: const Size(double.infinity, 50),
+            padding: const EdgeInsets.all(16.0),
+            primary: Colors.black,
+            backgroundColor: color,
+          ),
+          child: Text(label)));
 }
