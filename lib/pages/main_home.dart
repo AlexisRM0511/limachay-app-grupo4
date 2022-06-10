@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:limachayapp/components/home.dart';
 
 const double margin = 6.0;
-
-void main() => runApp(MainHome());
 
 class MainHome extends StatefulWidget {
   @override
   _MainHomeState createState() => _MainHomeState();
-
 }
 
 class _MainHomeState extends State<MainHome> {
   int _paginaActual = 0;
+  List<Widget>_paginas = [
+    home(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -19,23 +20,14 @@ class _MainHomeState extends State<MainHome> {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       home: Scaffold(
-        body: Column(
-          children: [
-            Text("\n\n\n"),
-            Container(
-              alignment: Alignment.center,
-              child: Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Escudo_de_la_Polic%C3%ADa_Nacional_del_Per%C3%BA.png/1200px-Escudo_de_la_Polic%C3%ADa_Nacional_del_Per%C3%BA.png", width: 75),
-            ),
-            GroupInput("Buscar", const Icon(Icons.search)),
-            Container(
-              child: Image.network("https://dirandro.policia.gob.pe/footer/4.png?pfdrid_c=true"),
-            ),
-            Text("\n¿Has Presenciado Algun Delito?\n"),
-            GroupInput("Si o No", const Icon(Icons.check)),
-            Text("\nRecientes")
-          ],
+        body: SingleChildScrollView(
+          child: _paginas[_paginaActual],
         ),
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed, // Fixed
+          backgroundColor: Colors.white, // <-- This works for fixed
+          selectedItemColor: Colors.green,
+          unselectedItemColor: Colors.grey,
           onTap: (index){
             setState(() {
               _paginaActual = index;
@@ -43,10 +35,10 @@ class _MainHomeState extends State<MainHome> {
           },
           currentIndex: _paginaActual,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio", backgroundColor: Colors.green),
-            BottomNavigationBarItem(icon: Icon(Icons.article), label: "Registrar", backgroundColor: Colors.red),
-            BottomNavigationBarItem(icon: Icon(Icons.assessment), label: "Estadisticas", backgroundColor: Colors.yellow),
-            BottomNavigationBarItem(icon: Icon(Icons.supervised_user_circle), label: "Mi Usuario", backgroundColor: Colors.blue),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
+            BottomNavigationBarItem(icon: Icon(Icons.article), label: "Registrar"),
+            BottomNavigationBarItem(icon: Icon(Icons.assessment), label: "Estadisticas"),
+            BottomNavigationBarItem(icon: Icon(Icons.supervised_user_circle), label: "Mi Usuario"),
           ],
         ),
       ),
@@ -58,10 +50,12 @@ class _MainHomeState extends State<MainHome> {
 
 Widget GroupInput(String label, Widget icon) {
   return Container(
-    margin: const EdgeInsets.only(top: margin, bottom: margin),
+    margin: EdgeInsets.all(12),
+    //margin: const EdgeInsets.only(top: margin, bottom: margin),
     child: TextField(
       decoration: InputDecoration(
-          border: const OutlineInputBorder(),
+          border: OutlineInputBorder(),
+          isDense: true,
           labelText: label,
           suffixIcon: icon
       ),

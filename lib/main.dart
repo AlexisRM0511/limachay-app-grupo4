@@ -26,9 +26,9 @@ class Limachay extends StatelessWidget {
         child: Scaffold(
           body: Container(
             padding: const EdgeInsets.all(20),
-            child: sue(),
+            //child: Sue(),
             // child: SueDetail(),
-            // child: MainHome(),
+            child: MainHome(),
             // child: MyLogin(),
             // child: Sign(),
             // child: profile(),
