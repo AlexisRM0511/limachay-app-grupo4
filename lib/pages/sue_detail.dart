@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SueDetail extends StatelessWidget {
+  const SueDetail({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,10 +17,10 @@ class SueDetailPage extends StatefulWidget {
   final String title;
 
   @override
-  _SueDetailPageState createState() => _SueDetailPageState();
+  SueDetailPageState createState() => SueDetailPageState();
 }
 
-class _SueDetailPageState extends State<SueDetailPage> {
+class SueDetailPageState extends State<SueDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
