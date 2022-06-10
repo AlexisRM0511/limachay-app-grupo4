@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-class profile extends StatefulWidget {
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
+
   @override
-  _profileState createState() => _profileState();
+  ProfileState createState() => ProfileState();
 }
 
-class _profileState extends State<profile> {
+class ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,23 +80,20 @@ Widget balance(int made, int approved) {
 }
 
 Widget balanceItem(int quantity, String label) {
-  return Container(
-    // width: 160.0,
-    child: Column(
-      children: [
-        Text(
-          quantity.toString(),
-          style: const TextStyle(
-            fontSize: 20,
-          ),
+  return Column(
+    children: [
+      Text(
+        quantity.toString(),
+        style: const TextStyle(
+          fontSize: 20,
         ),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 12,
-          ),
+      ),
+      Text(
+        label,
+        style: const TextStyle(
+          fontSize: 12,
         ),
-      ],
-    ),
+      ),
+    ],
   );
 }

@@ -1,64 +1,92 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:limachayapp/components/home.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:limachayapp/components/profile.dart';
+import 'package:limachayapp/components/sue.dart';
+
+import '../components/statistics.dart';
 
 const double margin = 6.0;
 
 class MainHome extends StatefulWidget {
+  const MainHome({Key? key}) : super(key: key);
+
   @override
-  _MainHomeState createState() => _MainHomeState();
+  MainHomeState createState() => MainHomeState();
 }
 
-class _MainHomeState extends State<MainHome> {
-  int _paginaActual = 0;
-  List<Widget>_paginas = [
-    home(),
+class MainHomeState extends State<MainHome> {
+  int currentPage = 0;
+  final List<Widget> page = [
+    const Home(),
+    const Sue(),
+    const Statistics(),
+    const Profile()
   ];
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      home: Scaffold(
-        body: SingleChildScrollView(
-          child: _paginas[_paginaActual],
-        ),
+    DateTime lastPopTime = DateTime.now();
+    return Scaffold(
+        body: WillPopScope(
+            child: SingleChildScrollView(
+              child: page[currentPage],
+            ),
+            onWillPop: () async {
+              if (DateTime.now().difference(lastPopTime) >
+                  const Duration(seconds: 1)) {
+                lastPopTime = DateTime.now();
+                Fluttertoast.showToast(
+                    msg: "Presione de nuevo para salir",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    backgroundColor: Colors.black54,
+                    timeInSecForIosWeb: 1
+                );
+              } else {
+                lastPopTime = DateTime.now();
+                await SystemChannels.platform
+                    .invokeMethod('SystemNavigator.pop');
+              }
+              return false;
+            }),
         bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed, // Fixed
-          backgroundColor: Colors.white, // <-- This works for fixed
+          type: BottomNavigationBarType.fixed,
+          // Fixed
+          backgroundColor: Colors.white,
+          // <-- This works for fixed
           selectedItemColor: Colors.green,
           unselectedItemColor: Colors.grey,
-          onTap: (index){
+          onTap: (index) {
             setState(() {
-              _paginaActual = index;
+              currentPage = index;
             });
           },
-          currentIndex: _paginaActual,
-          items: [
+          currentIndex: currentPage,
+          items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
-            BottomNavigationBarItem(icon: Icon(Icons.article), label: "Registrar"),
-            BottomNavigationBarItem(icon: Icon(Icons.assessment), label: "Estadisticas"),
-            BottomNavigationBarItem(icon: Icon(Icons.supervised_user_circle), label: "Mi Usuario"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.article), label: "Registrar"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.assessment), label: "Estadísticas"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.supervised_user_circle), label: "Mi Usuario"),
           ],
-        ),
-      ),
-    );
-
-
+        ));
   }
 }
 
-Widget GroupInput(String label, Widget icon) {
+Widget groupInput(String label, Widget icon) {
   return Container(
-    margin: EdgeInsets.all(12),
+    margin: const EdgeInsets.all(12),
     //margin: const EdgeInsets.only(top: margin, bottom: margin),
     child: TextField(
       decoration: InputDecoration(
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
           isDense: true,
           labelText: label,
-          suffixIcon: icon
-      ),
+          suffixIcon: icon),
     ),
   );
 }

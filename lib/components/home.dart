@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-class home extends StatelessWidget{
+class Home extends StatelessWidget{
+  const Home({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context){
     return Column(
@@ -13,26 +15,24 @@ class home extends StatelessWidget{
           alignment: Alignment.bottomCenter,
           child: Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Escudo_de_la_Polic%C3%ADa_Nacional_del_Per%C3%BA.png/1200px-Escudo_de_la_Polic%C3%ADa_Nacional_del_Per%C3%BA.png", width: 50),
         ),
-        GroupInput("Buscar", const Icon(Icons.search)),
-        Container(
-          child: Image.network("https://dirandro.policia.gob.pe/footer/4.png?pfdrid_c=true"),
-        ),
-        Text("¿Has Presenciado Algun Delito?"),
-        GroupInput("Si o No", const Icon(Icons.check)),
-        Text("Recientes")
+        groupInput("Buscar", const Icon(Icons.search)),
+        Image.network("https://dirandro.policia.gob.pe/footer/4.png?pfdrid_c=true"),
+        const Text("¿Has Presenciado Algún Delito?"),
+        groupInput("Si o No", const Icon(Icons.check)),
+        const Text("Recientes")
       ],
     );
   }
 }
 
-Widget GroupInput(String label, Widget icon) {
+Widget groupInput(String label, Widget icon) {
   return Container(
-    margin: EdgeInsets.all(12),
+    margin: const EdgeInsets.all(12),
     //height: margin*24.0,
     child:
     TextField(
       decoration: InputDecoration(
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
           labelText: label,
           isDense: true,
           suffixIcon: icon
