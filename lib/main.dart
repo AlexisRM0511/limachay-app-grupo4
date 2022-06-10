@@ -4,6 +4,7 @@ import 'package:limachayapp/pages/sue_detail.dart';
 import 'package:limachayapp/pages/main_home.dart';
 import 'package:limachayapp/pages/log_in.dart';
 import 'package:limachayapp/pages/sign_in.dart';
+import 'package:limachayapp/components/profile.dart';
 
 void main() {
   runApp(const Limachay());
@@ -30,6 +31,7 @@ class Limachay extends StatelessWidget {
             child: MainHome(),
             // child: MyLogin(),
             // child: Sign(),
+            // child: profile(),
           )
         )
       )
