@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+void main() => runApp(SueDetail());
+
 class SueDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
