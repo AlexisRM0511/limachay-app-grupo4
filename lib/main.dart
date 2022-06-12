@@ -28,7 +28,7 @@ class Limachay extends StatelessWidget {
             // child: Sue(),
             // child: SueDetail(),
             // child: MainHome(),
-            child: MyLogin(),
+            child: SueDetail(),
             // child: Sign(),
           )
         )
