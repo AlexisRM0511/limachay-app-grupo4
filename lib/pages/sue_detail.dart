@@ -38,29 +38,6 @@ class _SueDetailPageState extends State<SueDetailPage> {
               decoration: const BoxDecoration(color: Colors.white30),
               child: Column(
                 children: <Widget>[
-                  // GridView.count(
-                  //   primary: false,
-                  //   crossAxisCount: 2,
-                  //   crossAxisSpacing: 10,
-                  //   children: [
-                  //     Container(
-                  //       child: const Text(
-                  //         'Delito',
-                  //         style: TextStyle(
-                  //           fontSize: 20,
-                  //           fontWeight: FontWeight.bold,
-                  //         )
-                  //       )
-                  //     ),
-                  //     Container(
-                  //       child: const Icon(
-                  //         Icons.check_circle_outline_sharp,
-                  //         color: Colors.green,
-                  //         size: 30.0,
-                  //       )
-                  //     )
-                  //   ],
-                  // ),
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 20.0, top: 30.0, bottom: 20.0, right: 20.0),
