@@ -14,6 +14,6 @@ class StatisticsState extends State<Statistics> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(key: _formKey, child: Column(children: const []));
+    return Container(key: _formKey, child: Column(children: const []));
   }
 }

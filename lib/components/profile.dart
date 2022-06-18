@@ -10,7 +10,7 @@ class Profile extends StatefulWidget {
 class ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return /*Scaffold(
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -22,6 +22,17 @@ class ProfileState extends State<Profile> {
           )
         )
       )
+    );*/
+    Container(
+      child: Center(
+        child: Column(
+            children: [
+              balance(12, 6)
+            ]
+        )
+
+      )
+
     );
   }
 }
