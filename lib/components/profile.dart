@@ -24,7 +24,7 @@ class _ProfileState extends State<Profile> {
   };
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return Scaffold(
         appBar: AppBar(
           title: const Text("Perfil"),
           titleTextStyle: const TextStyle(
