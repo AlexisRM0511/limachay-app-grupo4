@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "498298226344",
+    "project_id": "limachay-2022-1",
+    "storage_bucket": "limachay-2022-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498298226344:android:c2491049c08320c65a249d",
+        "android_client_info": {
+          "package_name": "com.squadfour.limachayapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498298226344-s0ehbn2fr3msavmv2u1b6kgat0ujd3lo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ73Z3R3UGfvuth3LPgoVhZmmd4OXjOZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498298226344-s0ehbn2fr3msavmv2u1b6kgat0ujd3lo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
