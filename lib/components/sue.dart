@@ -21,12 +21,9 @@ class SueState extends State<Sue> {
       children: const [SueForm()],
     ))));*/
     Column(
-      child: Center(
-
-      )children: [
-
+      children: [
         SueForm()
-      ],
+      ]
     );
   }
 }

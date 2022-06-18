@@ -20,7 +20,7 @@ class MainHomeState extends State<MainHome> {
   int _currentPage = 0;
   final List<Widget> _page = [
     const Home(),
-    const Sue(),
+    Sue(),
     const Statistics(),
     const Profile()
   ];
