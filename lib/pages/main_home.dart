@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:limachayapp/components/home.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:limachayapp/components/profile.dart';
-import 'package:limachayapp/components/sue.dart';
-
+import '../components/home.dart';
+import '../components/profile.dart';
+import '../components/sue.dart';
 import '../components/statistics.dart';
 
 const double margin = 6.0;
+
 
 class MainHome extends StatefulWidget {
   const MainHome({Key? key}) : super(key: key);
@@ -17,8 +17,8 @@ class MainHome extends StatefulWidget {
 }
 
 class MainHomeState extends State<MainHome> {
-  int currentPage = 0;
-  final List<Widget> page = [
+  int _currentPage = 0;
+  final List<Widget> _page = [
     const Home(),
     const Sue(),
     const Statistics(),
@@ -30,9 +30,7 @@ class MainHomeState extends State<MainHome> {
     DateTime lastPopTime = DateTime.now();
     return Scaffold(
         body: WillPopScope(
-            child: SingleChildScrollView(
-              child: page[currentPage],
-            ),
+            child: _page[_currentPage],
             onWillPop: () async {
               if (DateTime.now().difference(lastPopTime) >
                   const Duration(seconds: 1)) {
@@ -60,10 +58,10 @@ class MainHomeState extends State<MainHome> {
           unselectedItemColor: Colors.grey,
           onTap: (index) {
             setState(() {
-              currentPage = index;
+              _currentPage = index;
             });
           },
-          currentIndex: currentPage,
+          currentIndex: _currentPage,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
             BottomNavigationBarItem(
@@ -73,7 +71,8 @@ class MainHomeState extends State<MainHome> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.supervised_user_circle), label: "Mi Usuario"),
           ],
-        ));
+        )
+    );
   }
 }
 

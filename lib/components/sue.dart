@@ -14,12 +14,15 @@ class SueState extends State<Sue> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-            child: Center(
-                child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [SueForm()],
-    ))));
+      body: SingleChildScrollView(
+          child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [SueForm()],
+              )
+          )
+      ),
+    );
   }
 }
 
@@ -38,7 +41,9 @@ class SueFormState extends State<SueForm> {
     return Form(
         key: _formKey,
         child: Column(children: [
+          const SingleChildScrollView(),
           Container(
+            margin: const EdgeInsets.all(12),
             alignment: Alignment.centerLeft,
             padding:
                 const EdgeInsets.only(left: 5, top: margin, bottom: margin),
@@ -63,7 +68,8 @@ class SueFormState extends State<SueForm> {
 
 Widget textInput(String label) {
   return Container(
-    margin: const EdgeInsets.only(top: margin, bottom: margin),
+      margin: const EdgeInsets.all(12),
+    //margin: const EdgeInsets.only(top: margin, bottom: margin),
     child: TextFormField(
       decoration:
           InputDecoration(border: const OutlineInputBorder(), labelText: label),
@@ -79,7 +85,8 @@ Widget textInput(String label) {
 
 Widget textArea(String label) {
   return Container(
-      margin: const EdgeInsets.only(top: margin, bottom: margin),
+      //margin: const EdgeInsets.only(top: margin, bottom: margin),
+      margin: const EdgeInsets.all(12),
       child: TextFormField(
         keyboardType: TextInputType.multiline,
         maxLines: 5,
@@ -98,7 +105,8 @@ Widget textArea(String label) {
 
 Widget groupInput(String label, Widget icon) {
   return Container(
-    margin: const EdgeInsets.only(top: margin, bottom: margin),
+    //margin: const EdgeInsets.only(top: margin, bottom: margin),
+      margin: const EdgeInsets.all(12),
     child: TextFormField(
       decoration: InputDecoration(
           border: const OutlineInputBorder(),
@@ -116,7 +124,8 @@ Widget groupInput(String label, Widget icon) {
 
 Widget addButton(String label, Widget icon) {
   return Container(
-      margin: const EdgeInsets.only(top: margin, bottom: margin),
+      //margin: const EdgeInsets.only(top: margin, bottom: margin),
+      margin: const EdgeInsets.all(12),
       alignment: Alignment.centerLeft,
       child: Column(
         children: [
@@ -151,7 +160,8 @@ Widget addButton(String label, Widget icon) {
 
 Widget customCheckbox(String label) {
   return Container(
-      margin: const EdgeInsets.only(top: margin, bottom: margin),
+      //margin: const EdgeInsets.only(top: margin, bottom: margin),
+      margin: const EdgeInsets.all(12),
       child: CheckboxListTile(
         contentPadding: const EdgeInsets.all(0),
         title: Text(label, style: const TextStyle(color: Colors.grey)),
@@ -163,7 +173,8 @@ Widget customCheckbox(String label) {
 Widget submitBtn(
     String label, Color color, GlobalKey<FormState> key, BuildContext context) {
   return Container(
-      margin: const EdgeInsets.only(top: margin, bottom: margin),
+      //margin: const EdgeInsets.only(top: margin, bottom: margin),
+      margin: const EdgeInsets.all(12),
       child: TextButton(
           onPressed: () {
             if (key.currentState!.validate()) {

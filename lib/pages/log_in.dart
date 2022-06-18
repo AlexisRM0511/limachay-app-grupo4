@@ -8,11 +8,13 @@ final regexPassword = RegExp(
     r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
 
 bool _isEmailValid(String email) {
-  return regexEmail.hasMatch(email.toLowerCase());
+  return true;
+  //return regexEmail.hasMatch(email.toLowerCase());
 }
 
 bool _isPasswordValid(String password) {
-  return regexPassword.hasMatch(password);
+  //return regexPassword.hasMatch(password);
+  return true;
 }
 
 class LogInForm extends StatefulWidget {
