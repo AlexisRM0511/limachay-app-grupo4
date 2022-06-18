@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:limachayapp/pages/sue_detail.dart';
 
 class SueCase {
   final String subject;
@@ -26,7 +27,12 @@ class SueCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SueDetail())
+            );
+          },
           child: Card(
               elevation: 0,
               shape: RoundedRectangleBorder(

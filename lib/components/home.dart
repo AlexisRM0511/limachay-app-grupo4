@@ -33,9 +33,27 @@ class HomeState extends State<Home> {
           ),
           groupInput("Buscar", const Icon(Icons.search)),
           Image.network("https://dirandro.policia.gob.pe/footer/4.png?pfdrid_c=true"),
-          const Text("¿Has Presenciado Algún Delito?"),
+          Container(
+            child: const Text("¿Has Presenciado Algún Delito?",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+            ),
+            ),
+          ),
           groupInput("Si o No", const Icon(Icons.check)),
-          const Text("Recientes"),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            alignment: Alignment.bottomLeft,
+            child: const Text("Recientes",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,),
+            ),
+          ),
+          SizedBox(height: 20),
           Expanded(
               child: ListView(
                 shrinkWrap: true,
