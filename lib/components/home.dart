@@ -22,6 +22,7 @@ class HomeState extends State<Home> {
     return Scaffold(
       body:Column(
         children: [
+          const SingleChildScrollView(),
           //Text("\n\n\n"),
           Container(
             width: 140.0,

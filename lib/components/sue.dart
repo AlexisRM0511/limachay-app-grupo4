@@ -14,18 +14,15 @@ class SueState extends State<Sue> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [SueForm()],
-                )
-            )
+      body: SingleChildScrollView(
+          child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [SueForm()],
+              )
+          )
+      ),
     );
-    // Column(
-    //   children: [
-    //     SueForm()
-    //   ]
-    // );
   }
 }
 
@@ -44,6 +41,7 @@ class SueFormState extends State<SueForm> {
     return Form(
         key: _formKey,
         child: Column(children: [
+          const SingleChildScrollView(),
           Container(
             margin: const EdgeInsets.all(12),
             alignment: Alignment.centerLeft,

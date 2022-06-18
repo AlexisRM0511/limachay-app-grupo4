@@ -25,6 +25,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         appBar: AppBar(
           title: const Text("Perfil"),
           titleTextStyle: const TextStyle(
@@ -36,8 +37,10 @@ class _ProfileState extends State<Profile> {
           elevation: 0,
         ),
         body: SafeArea(
+
             child: Column(
                 children: <Widget>[
+                  const SingleChildScrollView(),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
                     child: Container(
