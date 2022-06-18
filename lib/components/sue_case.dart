@@ -10,7 +10,7 @@ class SueCase {
   SueCase({
     required this.subject,
     this.image = const Image(
-      image: AssetImage('assets/images/default_sue.png'),
+      image: AssetImage('assets/default_sue.png'),
     ),
     required this.when,
     required this.where,

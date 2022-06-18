@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:limachayapp/pages/log_in.dart';
-import 'package:limachayapp/pages/main_home.dart';
+import './pages/log_in.dart';
+import './pages/main_home.dart';
 
 void main() {
   runApp(const Limachay());
@@ -11,7 +11,9 @@ class Limachay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Limachay', home: const LogInForm(), routes: {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+        title: 'Limachay', home: const LogInForm(), routes: {
       "/home": (BuildContext context) => const MainHome(),
     });
   }

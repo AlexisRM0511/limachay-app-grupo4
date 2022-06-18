@@ -13,18 +13,19 @@ class Sue extends StatefulWidget {
 class SueState extends State<Sue> {
   @override
   Widget build(BuildContext context) {
-    return /*Scaffold(
-        body: SingleChildScrollView(
-            child: Center(
+    return Scaffold(
+        body: Center(
                 child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [SueForm()],
-    ))));*/
-    Column(
-      children: [
-        SueForm()
-      ]
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [SueForm()],
+                )
+            )
     );
+    // Column(
+    //   children: [
+    //     SueForm()
+    //   ]
+    // );
   }
 }
 

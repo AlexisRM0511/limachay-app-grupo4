@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:limachayapp/components/home.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:limachayapp/components/profile.dart';
-import 'package:limachayapp/components/sue.dart';
-import 'package:limachayapp/components/statistics.dart';
+import '../components/home.dart';
+import '../components/profile.dart';
+import '../components/sue.dart';
+import '../components/statistics.dart';
 
 const double margin = 6.0;
 
@@ -20,7 +20,7 @@ class MainHomeState extends State<MainHome> {
   int _currentPage = 0;
   final List<Widget> _page = [
     const Home(),
-    Sue(),
+    const Sue(),
     const Statistics(),
     const Profile()
   ];
@@ -28,12 +28,9 @@ class MainHomeState extends State<MainHome> {
   @override
   Widget build(BuildContext context) {
     DateTime lastPopTime = DateTime.now();
-    return MaterialApp(
-        home:Scaffold(
+    return Scaffold(
         body: WillPopScope(
-            child: SingleChildScrollView(
-              child: _page[_currentPage],
-            ),
+            child: _page[_currentPage],
             onWillPop: () async {
               if (DateTime.now().difference(lastPopTime) >
                   const Duration(seconds: 1)) {
@@ -74,7 +71,8 @@ class MainHomeState extends State<MainHome> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.supervised_user_circle), label: "Mi Usuario"),
           ],
-        )));
+        )
+    );
   }
 }
 
