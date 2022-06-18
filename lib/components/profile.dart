@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'sue_case.dart';
+import '../pages/profile_edit.dart';
 
 final sueCases = List<SueCase>.generate(
   10,
@@ -63,7 +64,12 @@ class _ProfileState extends State<Profile> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfileEdit()),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
 
@@ -92,7 +98,6 @@ class _ProfileState extends State<Profile> {
                         children: sueCases.map((sueCase) => SueCard(sueCase: sueCase)).toList(),
                       )
                   ),
-                  SizedBox(height: 40),
                 ]
             )
         )
