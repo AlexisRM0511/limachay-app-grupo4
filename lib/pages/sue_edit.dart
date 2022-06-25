@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-List<String> photos = <String>[
-
-];
+Map data = {
+  "delito": "",
+  "descripcion": "",
+  "lugar": "",
+  "fecha": "",
+  "photos": <String>[],
+  "conozco": true,
+};
 
 class SueEdit extends StatefulWidget {
   const SueEdit({Key? key}) : super(key: key);
@@ -45,9 +50,9 @@ class _SueEditState extends State<SueEdit> {
               margin: const EdgeInsets.all(12),
               child: Column(
                 children: <Widget>[
-                  _TextFormField("Delito"),
-                  _TextFormField("Descripción"),
-                  _TextFormFieldGroup("Lugar", const Icon(Icons.place)),
+                  _TextFormField("Delito", data["delito"]),
+                  _TextFormField("Descripción", data["descripcion"]),
+                  _TextFormFieldGroup("Lugar", const Icon(Icons.place), data["lugar"]),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: TextFormField(
@@ -74,8 +79,8 @@ class _SueEditState extends State<SueEdit> {
                         }
                     ),
                   ),
-                  _PhotoListAdd(photos),
-                  customCheckbox("Conozco al denunciado"),
+                  _PhotoListAdd(data["photos"]),
+                  customCheckbox("Conozco al denunciado", data["conozco"]),
                   submitBtn("Guardar", const Color(0xFF79E070), _formKey, context)
                 ],
               ),
@@ -87,10 +92,11 @@ class _SueEditState extends State<SueEdit> {
   }
 }
 
-Widget _TextFormField(String label) {
+Widget _TextFormField(String label, String initValue) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 16.0),
     child: TextFormField(
+      initialValue: initValue,
       decoration: InputDecoration(
         labelText: label,
       ),
@@ -98,10 +104,11 @@ Widget _TextFormField(String label) {
   );
 }
 
-Widget _TextFormArea(String label) {
+Widget _TextFormArea(String label, String initValue) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 16.0),
     child: TextFormField(
+      initialValue: initValue,
       keyboardType: TextInputType.multiline,
       maxLines: 5,
       decoration: InputDecoration(
@@ -111,10 +118,11 @@ Widget _TextFormArea(String label) {
   );
 }
 
-Widget _TextFormFieldGroup(String label, Icon icon) {
+Widget _TextFormFieldGroup(String label, Icon icon, String initValue) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 16.0),
     child: TextFormField(
+      initialValue: initValue,
       decoration: InputDecoration(
         labelText: label,
         suffixIcon: icon,
@@ -180,7 +188,7 @@ Widget _PhotoAdd() {
 }
 
 ////
-Widget customCheckbox(String label) {
+Widget customCheckbox(String label, bool initValue) {
   return Container(
     //margin: const EdgeInsets.only(top: margin, bottom: margin),
       margin: const EdgeInsets.all(12),
