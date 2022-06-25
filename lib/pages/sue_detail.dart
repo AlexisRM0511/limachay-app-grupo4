@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './sue_edit.dart';
 
 void main() => runApp(SueDetail());
 
@@ -69,7 +70,13 @@ class SueDetailPageState extends State<SueDetailPage> {
                                 color: Colors.blue,
                                 size: 30.0,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const SueEdit())
+                                );
+                              },
                             ),
                           ]
                         ),
