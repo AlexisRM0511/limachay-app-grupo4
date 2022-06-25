@@ -1,25 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-void main() {
-  //runApp(const Statistics());
-  runApp(SimpleBarChart(
-    series: [
-      charts.Series(
-        domainFn: (CountrySales sales, _) => sales.country,
-        measureFn: (CountrySales sales, _) => sales.sales,
-        id: 'Sales',
-        data: [
-          CountrySales('USA', 0.0),
-          CountrySales('GBR', 0.0),
-          CountrySales('AUS', 0.0),
-          CountrySales('IND', 0.0),
-          CountrySales('RUS', 0.0),
-        ],
-      ),
-    ],
-  ));
-}
+// void main() {
+//   //runApp(const Statistics());
+//   runApp(SimpleBarChart(_createSampleData().data));
+// }
 
 const double margin = 8.0;
 
