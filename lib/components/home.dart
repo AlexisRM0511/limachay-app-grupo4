@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:limachayapp/components/home_search.dart';
 import '../components/sue_case.dart';
 
 class Home extends StatefulWidget {
@@ -42,7 +43,17 @@ class HomeState extends State<Home> {
             ),
             ),
           ),
-          groupInput("Si o No", const Icon(Icons.check)),
+          Container(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeSearch())
+                );
+              },
+            child: groupInput("Si o No", const Icon(Icons.check)),
+          )
+          ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             alignment: Alignment.bottomLeft,
