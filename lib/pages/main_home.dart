@@ -21,7 +21,8 @@ class MainHomeState extends State<MainHome> {
   final List<Widget> _page = [
     const Home(),
     const Sue(),
-    const Statistics(),
+    //const Statistics(),
+    SimpleBarChart(animate: true),
     const Profile()
   ];
 
