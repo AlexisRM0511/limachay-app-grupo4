@@ -66,8 +66,8 @@ class _ProfileState extends State<Profile> {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ProfileEdit()),
+                            context,
+                            MaterialPageRoute(builder: (context) => const ProfileEdit())
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -98,7 +98,6 @@ class _ProfileState extends State<Profile> {
                         children: sueCases.map((sueCase) => SueCard(sueCase: sueCase)).toList(),
                       )
                   ),
-                  SizedBox(height: 40),
                 ]
             )
         )
