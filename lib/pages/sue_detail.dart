@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+void main() => runApp(SueDetail());
+
 class SueDetail extends StatelessWidget {
   const SueDetail({Key? key}) : super(key: key);
 
@@ -38,7 +40,44 @@ class SueDetailPageState extends State<SueDetailPage> {
               decoration: const BoxDecoration(color: Colors.white30),
               child: Column(
                 children: <Widget>[
-                  Container(
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20.0, top: 30.0, bottom: 20.0, right: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Delito',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.check_circle_outline_sharp,
+                              color: Colors.green,
+                              size: 30.0,
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.create_rounded,
+                                color: Colors.blue,
+                                size: 30.0,
+                              ),
+                              onPressed: () {},
+                            ),
+                          ]
+                        ),
+
+                      ],
+                    )
+                  )
+                  ,Container(
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.only(
                         left: 20.0, top: 30.0, bottom: 20.0, right: 20.0),
