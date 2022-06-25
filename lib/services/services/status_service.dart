@@ -1,12 +1,18 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'package:limachayapp/services/services/response.dart';
 import '../models/status_model.dart';
 
-Future<List> fetchGet() async {
-  const String url = 'https://limachay.herokuapp.com';
-  var statusList = [];
-  final response = await http.get(Uri.parse('$url/status/all'));
-  return jsonDecode(response.body) as List<Status>;
+class StatusService {
+  static const String url = 'https://limachay.herokuapp.com';
 
+  Future<Response> get statusModel async {
+    final http.Response response = await http.get(Uri.parse('$url/status/all'));
+    if (response.statusCode == 200) {
+      print(response.body);
+      return Response.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load status');
+    }
+  }
 }
