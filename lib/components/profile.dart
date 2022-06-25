@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:limachayapp/pages/profile_edit.dart';
 import 'sue_case.dart';
+import '../pages/profile_edit.dart';
 
 final sueCases = List<SueCase>.generate(
   10,
@@ -66,8 +66,8 @@ class _ProfileState extends State<Profile> {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const ProfileEdit())
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfileEdit()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
