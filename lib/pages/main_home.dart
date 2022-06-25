@@ -1,6 +1,8 @@
+import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:limachayapp/components/statistics_bk.dart';
 import '../components/home.dart';
 import '../components/profile.dart';
 import '../components/sue.dart';
@@ -18,11 +20,12 @@ class MainHome extends StatefulWidget {
 
 class MainHomeState extends State<MainHome> {
   int _currentPage = 0;
+  final List<Series<dynamic, String>> _seriesList = [];
   final List<Widget> _page = [
     const Home(),
     const Sue(),
-    //const Statistics(),
-    SimpleBarChart(animate: true),
+    const Statistics(),
+    //SimpleBarChart(_seriesList, animate: false),
     const Profile()
   ];
 
