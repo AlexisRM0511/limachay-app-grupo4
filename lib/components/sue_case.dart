@@ -43,7 +43,6 @@ class SueCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Container(
-
                   width: MediaQuery.of(context).size.width * 0.85,
                   height: 120,
                   child: Row(
@@ -59,7 +58,7 @@ class SueCard extends StatelessWidget {
                       SizedBox(width: 20),
                       Container(
                         padding: const EdgeInsets.symmetric(vertical: 10),
-                        width: MediaQuery.of(context).size.width * 0.5,
+                        width: 150,
                         child: Column(
                           children: [
                             Container(
@@ -106,7 +105,6 @@ class SueCard extends StatelessWidget {
                           ],
                         ),
                       )
-
                     ],
                   )
               )
