@@ -1,70 +1,91 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../components/home.dart';
+import '../components/profile.dart';
+import '../components/sue.dart';
+import '../components/statistics.dart';
 
 const double margin = 6.0;
 
-void main() => runApp(MainHome());
 
 class MainHome extends StatefulWidget {
-  @override
-  _MainHomeState createState() => _MainHomeState();
+  const MainHome({Key? key}) : super(key: key);
 
+  @override
+  MainHomeState createState() => MainHomeState();
 }
 
-class _MainHomeState extends State<MainHome> {
-  int _paginaActual = 0;
+class MainHomeState extends State<MainHome> {
+  int _currentPage = 0;
+  final List<Widget> _page = [
+    const Home(),
+    const Sue(),
+    const Statistics(),
+    const Profile()
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      home: Scaffold(
-        body: Column(
-          children: [
-            Text("\n\n\n"),
-            Container(
-              alignment: Alignment.center,
-              child: Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Escudo_de_la_Polic%C3%ADa_Nacional_del_Per%C3%BA.png/1200px-Escudo_de_la_Polic%C3%ADa_Nacional_del_Per%C3%BA.png", width: 75),
-            ),
-            GroupInput("Buscar", const Icon(Icons.search)),
-            Container(
-              child: Image.network("https://dirandro.policia.gob.pe/footer/4.png?pfdrid_c=true"),
-            ),
-            Text("\n¿Has Presenciado Algun Delito?\n"),
-            GroupInput("Si o No", const Icon(Icons.check)),
-            Text("\nRecientes")
-          ],
-        ),
+    DateTime lastPopTime = DateTime.now();
+    return Scaffold(
+        body: WillPopScope(
+            child: _page[_currentPage],
+            onWillPop: () async {
+              if (DateTime.now().difference(lastPopTime) >
+                  const Duration(seconds: 1)) {
+                lastPopTime = DateTime.now();
+                Fluttertoast.showToast(
+                    msg: "Presione de nuevo para salir",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    backgroundColor: Colors.black54,
+                    timeInSecForIosWeb: 1
+                );
+              } else {
+                lastPopTime = DateTime.now();
+                await SystemChannels.platform
+                    .invokeMethod('SystemNavigator.pop');
+              }
+              return false;
+            }),
         bottomNavigationBar: BottomNavigationBar(
-          onTap: (index){
+          type: BottomNavigationBarType.fixed,
+          // Fixed
+          backgroundColor: Colors.white,
+          // <-- This works for fixed
+          selectedItemColor: Colors.green,
+          unselectedItemColor: Colors.grey,
+          onTap: (index) {
             setState(() {
-              _paginaActual = index;
+              _currentPage = index;
             });
           },
-          currentIndex: _paginaActual,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio", backgroundColor: Colors.green),
-            BottomNavigationBarItem(icon: Icon(Icons.article), label: "Registrar", backgroundColor: Colors.red),
-            BottomNavigationBarItem(icon: Icon(Icons.assessment), label: "Estadisticas", backgroundColor: Colors.yellow),
-            BottomNavigationBarItem(icon: Icon(Icons.supervised_user_circle), label: "Mi Usuario", backgroundColor: Colors.blue),
+          currentIndex: _currentPage,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.article), label: "Registrar"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.assessment), label: "Estadísticas"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.supervised_user_circle), label: "Mi Usuario"),
           ],
-        ),
-      ),
+        )
     );
-
-
   }
 }
 
-Widget GroupInput(String label, Widget icon) {
+Widget groupInput(String label, Widget icon) {
   return Container(
-    margin: const EdgeInsets.only(top: margin, bottom: margin),
+    margin: const EdgeInsets.all(12),
+    //margin: const EdgeInsets.only(top: margin, bottom: margin),
     child: TextField(
       decoration: InputDecoration(
           border: const OutlineInputBorder(),
+          isDense: true,
           labelText: label,
-          suffixIcon: icon
-      ),
+          suffixIcon: icon),
     ),
   );
 }
