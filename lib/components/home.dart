@@ -32,7 +32,7 @@ class HomeState extends State<Home> {
             child: Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Escudo_de_la_Polic%C3%ADa_Nacional_del_Per%C3%BA.png/1200px-Escudo_de_la_Polic%C3%ADa_Nacional_del_Per%C3%BA.png", width: 50),
           ),
           groupInput("Buscar", const Icon(Icons.search)),
-          Image.network("https://dirandro.policia.gob.pe/footer/4.png?pfdrid_c=true"),
+          Image.network("https://dirandro.policia.gob.pe/footer/4.png"),
           Container(
             child: const Text("¿Has Presenciado Algún Delito?",
               textAlign: TextAlign.left,

@@ -7,6 +7,6 @@ Future<List> fetchGet() async {
   const String url = 'https://limachay.herokuapp.com';
   var statusList = [];
   final response = await http.get(Uri.parse('$url/status/all'));
-  return jsonDecode(response.body) as List<dynamic>;
+  return jsonDecode(response.body) as List<Status>;
 
 }
