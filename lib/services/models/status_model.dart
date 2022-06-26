@@ -1,11 +1,23 @@
-class Status {
-  final String name;
+class StatusModel {
+  StatusModel({
+    this.id,
+    required this.name,
+    this.v,
+  });
 
-  Status({required this.name});
+  String? id;
+  String name;
+  int? v;
 
-  factory Status.fromJson(Map<String, dynamic> json) {
-    return Status(
-      name: json['name'],
-    );
-  }
+  factory StatusModel.fromJson(Map<String, dynamic> json) => StatusModel(
+        id: json["_id"],
+        name: json["name"],
+        v: json["__v"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        "name": name,
+        "__v": v,
+      };
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:limachayapp/components/home_search.dart';
 import '../components/sue_case.dart';
 
 class Home extends StatefulWidget {
@@ -31,7 +32,7 @@ class HomeState extends State<Home> {
             alignment: Alignment.bottomCenter,
             child: Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Escudo_de_la_Polic%C3%ADa_Nacional_del_Per%C3%BA.png/1200px-Escudo_de_la_Polic%C3%ADa_Nacional_del_Per%C3%BA.png", width: 50),
           ),
-          groupInput("Buscar", const Icon(Icons.search)),
+          groupInputSearch("Buscar", Icon(Icons.search), context),
           Image.network("https://dirandro.policia.gob.pe/footer/4.png"),
           Container(
             child: const Text("¿Has Presenciado Algún Delito?",
@@ -42,7 +43,9 @@ class HomeState extends State<Home> {
             ),
             ),
           ),
-          groupInput("Si o No", const Icon(Icons.check)),
+          Container(
+            child: groupInput("Si o No", const Icon(Icons.check)),
+          ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             alignment: Alignment.bottomLeft,
@@ -53,7 +56,7 @@ class HomeState extends State<Home> {
                 fontWeight: FontWeight.w500,),
             ),
           ),
-          SizedBox(height: 20),
+          //SizedBox(height: 5),
           Expanded(
               child: ListView(
                 shrinkWrap: true,
@@ -73,6 +76,29 @@ Widget groupInput(String label, Widget icon) {
     //height: margin*24.0,
     child:
     TextField(
+      decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          labelText: label,
+          isDense: true,
+          suffixIcon: icon
+      ),
+    ),
+  );
+}
+
+Widget groupInputSearch(String label, Widget icon, BuildContext context) {
+  return Container(
+    margin: const EdgeInsets.all(12),
+    //height: margin*24.0,
+    child:
+
+    TextField(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomeSearch()),
+        );
+      },
       decoration: InputDecoration(
           border: const OutlineInputBorder(),
           labelText: label,
