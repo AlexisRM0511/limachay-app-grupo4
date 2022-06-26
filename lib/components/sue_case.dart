@@ -34,7 +34,7 @@ class SueCard extends StatelessWidget {
             );
           },
           child: Card(
-              elevation: 0,
+              //elevation: 0,
               shape: RoundedRectangleBorder(
                 side: BorderSide(
                   color: Colors.black,
@@ -43,7 +43,7 @@ class SueCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Container(
-                  width: MediaQuery.of(context).size.width * 0.85,
+                  width: MediaQuery.of(context).size.width * 0.90,
                   height: 120,
                   child: Row(
                     children: [
@@ -58,7 +58,7 @@ class SueCard extends StatelessWidget {
                       SizedBox(width: 20),
                       Container(
                         padding: const EdgeInsets.symmetric(vertical: 10),
-                        width: 150,
+                        width: MediaQuery.of(context).size.width * 0.5,
                         child: Column(
                           children: [
                             Container(
@@ -105,6 +105,7 @@ class SueCard extends StatelessWidget {
                           ],
                         ),
                       )
+
                     ],
                   )
               )
