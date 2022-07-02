@@ -2,28 +2,17 @@ import 'package:flutter/material.dart';
 import './sue_card.dart';
 import './sue_case.dart';
 
-void main() => runApp(HomeSearch());
-
-class HomeSearch extends StatelessWidget {
-  const HomeSearch({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Delito Detalle',
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: const HomeSearchPage(title: 'Flutter Demo Home Page'));
-  }
-}
+void main() => runApp(HomeSearchPage());
 
 class HomeSearchPage extends StatefulWidget {
-  const HomeSearchPage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const HomeSearchPage({Key? key}) : super(key: key);
 
   @override
   HomeSearchPageState createState() => HomeSearchPageState();
 }
 
 class HomeSearchPageState extends State<HomeSearchPage> {
+
   @override
   Widget build(BuildContext context){
     return Scaffold(

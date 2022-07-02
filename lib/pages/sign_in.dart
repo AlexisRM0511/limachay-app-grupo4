@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 const double margin = 20.0;
 
+bool _passVisibility = false;
+bool _passVisibility2 = false;
+
 final regexOnlyLetters = RegExp(r'^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$');
 
 final regexEmail = RegExp(
@@ -44,6 +47,18 @@ class SignForm extends StatefulWidget {
 class SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
 
+  void _togglePassword1() {
+    setState(() {
+      _passVisibility = !_passVisibility;
+    });
+  }
+
+  void _togglePassword2() {
+    setState(() {
+      _passVisibility2 = !_passVisibility2;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,8 +89,22 @@ class SignFormState extends State<SignForm> {
                         textForm("Teléfono", 9),
                         textForm("Usuario", 3),
                         textForm("Correo", 4),
-                        textForm("Contraseña", 5),
-                        textForm("Contraseña Nuevamente", 6),
+                        textForm2(
+                            "Contraseña", 5, _togglePassword1, _passVisibility),
+                        textForm2("Contraseña Nuevamente", 6, _togglePassword2,
+                            _passVisibility2),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          margin: const EdgeInsets.only(
+                              bottom: 10.0, left: margin, right: margin),
+                          child: const Text(
+                            ' * La contraseña debe alguno de los siguientes caracteres: @!%*?&',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ),
                         buttonForm("Registrarse", _formKey, context),
                       ]))
                 ])));
@@ -101,7 +130,6 @@ Widget textForm(String label, int type) {
         margin:
             const EdgeInsets.only(bottom: 30.0, left: margin, right: margin),
         child: TextFormField(
-          obscureText: type == 5 || type == 6 ? true : false,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
@@ -119,6 +147,52 @@ Widget textForm(String label, int type) {
               : type == 4
                   ? TextInputType.emailAddress
                   : TextInputType.text,
+          validator: (value) {
+            return validarDato(value!, type, label);
+          },
+        ),
+      )
+    ],
+  );
+}
+
+Widget textForm2(
+    String label, int type, Function() _togglePassword, bool isPassword) {
+  return Column(
+    children: [
+      Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            padding: const EdgeInsets.only(left: 25.0, bottom: 5.0),
+            child: Text(
+              label,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                decorationStyle: TextDecorationStyle.solid,
+              ),
+            ),
+          )),
+      Container(
+        margin:
+            const EdgeInsets.only(bottom: 30.0, left: margin, right: margin),
+        child: TextFormField(
+          obscureText: isPassword ? true : false,
+          keyboardType: TextInputType.text,
+          decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              hintText: label,
+              contentPadding: const EdgeInsets.only(left: 14.0),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              enabledBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              suffixIcon: IconButton(
+                  icon: Icon(
+                      isPassword ? Icons.visibility_off : Icons.visibility),
+                  onPressed: _togglePassword)),
           validator: (value) {
             return validarDato(value!, type, label);
           },
