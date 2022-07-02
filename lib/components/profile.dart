@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'sue_case.dart';
+import 'sue_card.dart';
 import '../pages/profile_edit.dart';
-
-final sueCases = List<SueCase>.generate(
-  10,
-      (i) => SueCase(
-    subject: 'Sue #1',
-    when: DateTime.now(),
-    where: 'Here',
-    publisher: 'Limachay',
-  ),
-);
+import '../pages/sue_detail.dart';
+import './sue_case.dart';
+import './sue_card.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -74,14 +67,14 @@ class _ProfileState extends State<Profile> {
                         minimumSize: const Size.fromHeight(50),
 
                       ),
-                      child: Text("Editar perfil"),
+                      child: const Text("Editar perfil"),
                     ),
                   ),
                   const SizedBox(height: 40),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     alignment: Alignment.centerLeft,
-                    child: Text(
+                    child: const Text(
                       "Denuncias realizadas",
                       textAlign: TextAlign.left,
                       style: TextStyle(
@@ -90,12 +83,24 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   // TODO: Add SueCardList
                   Expanded(
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: sueCases.map((sueCase) => SueCard(sueCase: sueCase)).toList(),
+                      child: ListView.builder(
+                        itemCount: SueCase.samples.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  return SueDetail(sueCase: SueCase.samples[index]);
+                                })
+                              );
+                            },
+                            child: SueCard(sueCase: SueCase.samples[index]),
+                          );
+                        },
                       )
                   ),
                 ]
@@ -111,23 +116,23 @@ Widget Balance(Map balance) {
     children: balance.values.map((value) =>
         Column(
           children: <Widget>[
-            Container(
+            SizedBox(
               width: 90,
               child: Text(
                 textAlign: TextAlign.left,
                 value[1].toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: Text(
                 textAlign: TextAlign.left,
                 value[0].toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w300,
                 ),

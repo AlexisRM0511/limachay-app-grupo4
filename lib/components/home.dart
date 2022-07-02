@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:limachayapp/components/home_search.dart';
-import '../components/sue_case.dart';
+import './sue_card.dart';
+import './sue_case.dart';
+import '../pages/sue_detail.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -9,15 +11,6 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-  final sueCases = List<SueCase>.generate(
-    10,
-        (i) => SueCase(
-      subject: 'Sue #1',
-      when: DateTime.now(),
-      where: 'Here',
-      publisher: 'Limachay',
-    ),
-  );
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -58,12 +51,23 @@ class HomeState extends State<Home> {
           ),
           //SizedBox(height: 5),
           Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: sueCases.map((sueCase) => SueCard(sueCase: sueCase)).toList(),
+              child: ListView.builder(
+                itemCount: SueCase.samples.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return SueDetail(sueCase: SueCase.samples[index]);
+                          })
+                      );
+                    },
+                    child: SueCard(sueCase: SueCase.samples[index]),
+                  );
+                },
               )
           ),
-
         ],
       )
     );
