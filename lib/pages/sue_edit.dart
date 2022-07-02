@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-Map data = {
-  "delito": "",
-  "descripcion": "",
-  "lugar": "",
-  "fecha": "",
-  "photos": <String>[],
-  "conozco": true,
-};
+import '../components/sue_case.dart';
 
 class SueEdit extends StatefulWidget {
-  const SueEdit({Key? key}) : super(key: key);
+  final SueCase sueCase;
+  const SueEdit({Key? key, required this.sueCase}) : super(key: key);
 
   @override
   _SueEditState createState() => _SueEditState();
@@ -19,15 +12,193 @@ class SueEdit extends StatefulWidget {
 
 class _SueEditState extends State<SueEdit> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController dateinput = TextEditingController();
+  late Map _formDataController;
+  Map data = {
+    'subject': '',
+    'description': '',
+    'when': DateTime.now(),
+    'where': '',
+    'publisher': '',
+    'iKnow': false,
+    'images': <String>[],
+  };
+
   @override
   void initState() {
-    dateinput.text = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    Map data = {
+      'subject': widget.sueCase.subject,
+      'description': widget.sueCase.description,
+      'when': widget.sueCase.when,
+      'where': widget.sueCase.where,
+      'publisher': widget.sueCase.publisher,
+      'iKnow': widget.sueCase.iKnow,
+      'images': widget.sueCase.images,
+    };
+    _formDataController = {
+      'subject': TextEditingController(text: data['subject']),
+      'description': TextEditingController(text: data['description']),
+      'when': TextEditingController(text: DateFormat('dd/MM/yyyy').format(data['when'])),
+      'where': TextEditingController(text: data['where']),
+      'publisher': TextEditingController(text: data['publisher']),
+    };
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    Widget textFormField(String label, String controller) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: TextFormField(
+          controller: _formDataController[controller],
+          decoration: InputDecoration(
+            labelText: label,
+          ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Es un campo obligatorio';
+            }
+            return null;
+          },
+        ),
+      );
+    }
+
+    Widget textFormArea(String label, String controller) {
+      return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: TextFormField(
+            controller: _formDataController[controller],
+            keyboardType: TextInputType.multiline,
+            maxLines: 5,
+            decoration: InputDecoration(
+              labelText: label,
+            ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Es un campo obligatorio';
+              }
+              return null;
+            },
+          )
+      );
+    }
+
+    Widget textFormFieldGroup(String label, String controller, Icon icon) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: TextFormField(
+          controller: _formDataController[controller],
+          decoration: InputDecoration(
+            labelText: label,
+            suffixIcon: icon,
+          ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Es un campo obligatorio';
+            }
+            return null;
+          },
+        ),
+      );
+    }
+
+    Widget photoAdd() {
+      return Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(5),
+        ),
+        width: 100,
+        child: IconButton(
+          icon: const Icon(Icons.add),
+          onPressed: () {},
+        ),
+      );
+    }
+
+    Widget photoListAdd(List<String> photos) {
+      return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Column(
+            children: [
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                    'Fotos'
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 100,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: photos.length + 1,
+                  itemBuilder: (context, index) {
+                    if (index == photos.length) {
+                      return photoAdd();
+                    } else {
+                      return SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: Image.network(
+                          photos[index],
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ),],
+          )
+
+      );
+    }
+
+    Widget customCheckbox(String label, bool initValue) {
+      return Container(
+        //margin: const EdgeInsets.only(top: margin, bottom: margin),
+          margin: const EdgeInsets.all(12),
+          child: CheckboxListTile(
+            contentPadding: const EdgeInsets.all(0),
+            title: Text(label, style: const TextStyle(color: Colors.grey)),
+            value: data['iKnow'],
+            onChanged: (bool? value) {
+              setState(() {
+                data['iKnow'] = value;
+              });
+            },
+          )
+      );
+    }
+
+    Widget submitBtn(
+        String label, Color color, GlobalKey<FormState> key) {
+      return Container(
+        //margin: const EdgeInsets.only(top: margin, bottom: margin),
+          margin: const EdgeInsets.all(12),
+          child: TextButton(
+              onPressed: () {
+                if (key.currentState!.validate()) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Processing Data')));
+                }
+              },
+              style: TextButton.styleFrom(
+                minimumSize: const Size(double.infinity, 50),
+                padding: const EdgeInsets.all(16.0),
+                primary: Colors.black,
+                backgroundColor: color,
+              ),
+              child: Text(label)));
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(
@@ -50,13 +221,13 @@ class _SueEditState extends State<SueEdit> {
               margin: const EdgeInsets.all(12),
               child: Column(
                 children: <Widget>[
-                  _TextFormField("Delito", data["delito"]),
-                  _TextFormField("Descripción", data["descripcion"]),
-                  _TextFormFieldGroup("Lugar", const Icon(Icons.place), data["lugar"]),
+                  textFormField("Delito", 'subject'),
+                  textFormArea("Descripción", 'description'),
+                  textFormFieldGroup("Lugar", 'where', const Icon(Icons.place)),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: TextFormField(
-                        controller: dateinput,
+                        controller: _formDataController['when'],
                         decoration: const InputDecoration(
                           labelText: "Fecha",
                           suffixIcon: Icon(Icons.calendar_today),
@@ -73,15 +244,28 @@ class _SueEditState extends State<SueEdit> {
                           if (pickedDate != null) {
                             String formattedDate = DateFormat('dd/MM/yyyy').format(pickedDate);
                             setState(() {
-                              dateinput.text = formattedDate;
+                              _formDataController['when'].text = formattedDate;
                             });
                           }
                         }
                     ),
                   ),
-                  _PhotoListAdd(data["photos"]),
-                  customCheckbox("Conozco al denunciado", data["conozco"]),
-                  submitBtn("Guardar", const Color(0xFF79E070), _formKey, context)
+                  photoListAdd(widget.sueCase.images),
+                  Row(
+                    children: [
+                      const Text('Conozco al denunciado'),
+                      Checkbox(value: data['iKnow'],
+                          onChanged: (bool? value) {
+                        if (value != null) {
+                          setState(() {
+                            data['iKnow'] = value;
+                          });
+                        }
+                          })
+
+                    ],
+                  ),
+                  submitBtn("Guardar", const Color(0xFF79E070), _formKey)
                 ],
               ),
             ),
@@ -90,133 +274,4 @@ class _SueEditState extends State<SueEdit> {
       ),
     );
   }
-}
-
-Widget _TextFormField(String label, String initValue) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16.0),
-    child: TextFormField(
-      initialValue: initValue,
-      decoration: InputDecoration(
-        labelText: label,
-      ),
-    ),
-  );
-}
-
-Widget _TextFormArea(String label, String initValue) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16.0),
-    child: TextFormField(
-      initialValue: initValue,
-      keyboardType: TextInputType.multiline,
-      maxLines: 5,
-      decoration: InputDecoration(
-        labelText: label,
-      ),
-    )
-  );
-}
-
-Widget _TextFormFieldGroup(String label, Icon icon, String initValue) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16.0),
-    child: TextFormField(
-      initialValue: initValue,
-      decoration: InputDecoration(
-        labelText: label,
-        suffixIcon: icon,
-      ),
-    ),
-  );
-}
-
-Widget _PhotoListAdd(List<String> photos) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16.0),
-    child: Column(
-      children: [
-        const Align(
-          alignment: Alignment.centerLeft,
-          child: const Text(
-            'Fotos'
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Container(
-        height: 100,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: photos.length + 1,
-          itemBuilder: (context, index) {
-            if (index == photos.length) {
-              return _PhotoAdd();
-            } else {
-              return Container(
-                width: 100,
-                child: Image.network(
-                  photos[index],
-                  fit: BoxFit.cover,
-                ),
-              );
-            }
-          },
-        ),
-      ),],
-    )
-
-  );
-}
-
-Widget _PhotoAdd() {
-  return Container(
-    decoration: BoxDecoration(
-      border: Border.all(
-        color: Colors.grey,
-        width: 1,
-      ),
-      borderRadius: BorderRadius.circular(5),
-    ),
-    width: 100,
-    child: IconButton(
-      icon: Icon(Icons.add),
-      onPressed: () {},
-    ),
-  );
-}
-
-////
-Widget customCheckbox(String label, bool initValue) {
-  return Container(
-    //margin: const EdgeInsets.only(top: margin, bottom: margin),
-      margin: const EdgeInsets.all(12),
-      child: CheckboxListTile(
-        contentPadding: const EdgeInsets.all(0),
-        title: Text(label, style: const TextStyle(color: Colors.grey)),
-        value: false,
-        onChanged: (bool? value) {},
-      ));
-}
-
-Widget submitBtn(
-    String label, Color color, GlobalKey<FormState> key, BuildContext context) {
-  return Container(
-    //margin: const EdgeInsets.only(top: margin, bottom: margin),
-      margin: const EdgeInsets.all(12),
-      child: TextButton(
-          onPressed: () {
-            if (key.currentState!.validate()) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Processing Data')));
-            }
-          },
-          style: TextButton.styleFrom(
-            minimumSize: const Size(double.infinity, 50),
-            padding: const EdgeInsets.all(16.0),
-            primary: Colors.black,
-            backgroundColor: color,
-          ),
-          child: Text(label)));
 }

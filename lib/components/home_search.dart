@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../components/sue_case.dart';
+import './sue_card.dart';
+import './sue_case.dart';
 
 void main() => runApp(HomeSearch());
 
@@ -23,15 +24,6 @@ class HomeSearchPage extends StatefulWidget {
 }
 
 class HomeSearchPageState extends State<HomeSearchPage> {
-  final sueCases = List<SueCase>.generate(
-    10,
-        (i) => SueCase(
-      subject: 'Sue #1',
-      when: DateTime.now(),
-      where: 'Here',
-      publisher: 'Limachay',
-    ),
-  );
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -57,7 +49,7 @@ class HomeSearchPageState extends State<HomeSearchPage> {
     );
   }
 }
-
+// TODO: Arreglar cards
 Widget groupInput(String label, Widget icon) {
   return Container(
     margin: const EdgeInsets.all(12),

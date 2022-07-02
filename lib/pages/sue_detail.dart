@@ -1,85 +1,88 @@
 import 'package:flutter/material.dart';
 import './sue_edit.dart';
+import '../components/sue_case.dart';
 
-void main() => runApp(SueDetail());
-
-class SueDetail extends StatelessWidget {
-  const SueDetail({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Delito Detalle',
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: const SueDetailPage(title: 'Flutter Demo Home Page'));
-  }
-}
-
-class SueDetailPage extends StatefulWidget {
-  const SueDetailPage({Key? key, required this.title}) : super(key: key);
-  final String title;
+class SueDetail extends StatefulWidget {
+  final SueCase sueCase;
+  const SueDetail({Key? key, required this.sueCase}) : super(key: key);
 
   @override
-  SueDetailPageState createState() => SueDetailPageState();
+  _SueDetailState createState() => _SueDetailState();
 }
 
-class SueDetailPageState extends State<SueDetailPage> {
+class _SueDetailState extends State<SueDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          children: <Widget>[
-            Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 4,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/img.png'),
-                    ))),
-            Container(
-              decoration: const BoxDecoration(color: Colors.white30),
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 20.0, top: 30.0, bottom: 20.0, right: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'Delito',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.check_circle_outline_sharp,
-                              color: Colors.green,
-                              size: 30.0,
-                            ),
-                            SizedBox(
-                              width: 15.0,
-                            ),
-                            IconButton(
-                              icon: const Icon(
-                                Icons.create_rounded,
-                                color: Colors.blue,
-                                size: 30.0,
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const SueEdit())
-                                );
-                              },
-                            ),
-                          ]
-                        ),
+      appBar: AppBar(
+        title: const Text('Detalle'),
+        leading: const BackButton(
+          color: Colors.black,
+        ),
+        titleTextStyle: const TextStyle(
+          color: Colors.black,
+          fontSize: 27,
+          fontWeight: FontWeight.w500,
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+        body: SafeArea(
+          child:
+              SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        child: Image(
+                          image: AssetImage('assets/default_sue.png')
+                        )
+                    ),
+                    Container(
+                      decoration: const BoxDecoration(color: Colors.white30),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20.0, top: 30.0, bottom: 20.0, right: 20.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  widget.sueCase.subject,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    const Icon(
+                                      Icons.check_circle_outline_sharp,
+                                      color: Colors.green,
+                                      size: 30.0,
+                                    ),
+                                    const SizedBox(
+                                      width: 15.0,
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(
+                                        Icons.create_rounded,
+                                        color: Colors.blue,
+                                        size: 30.0,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => SueEdit(sueCase: widget.sueCase)
+                                          )
+                                        );
+                                      },
+                                    ),
+                                  ]
+                                ),
 
                       ],
                     )
@@ -96,16 +99,18 @@ class SueDetailPageState extends State<SueDetailPage> {
                       ),
                     ),
                   ),
-                  texts('Lugar: ', 'Calle falsa 123'),
-                  texts('Fecha y Hora: ', '12/12/12 12:12'),
-                  texts('Denunciado por: ', 'Juan Perez'),
-                  texts('Descripcion: ',
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
-                ],
+                  texts('Lugar: ', widget.sueCase.where),
+                  texts('Fecha y Hora: ', '${widget.sueCase.when.day}/${widget.sueCase.when.month}/${widget.sueCase.when.year}'),
+                  texts('Denunciado por: ', widget.sueCase.publisher),
+                  texts('Descripcion: ', widget.sueCase.description),],
               ),
-            ),
+            )
+
           ],
-        ));
+        )
+      )
+      )
+    );
   }
 }
 
