@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:limachayapp/services/services/response.dart';
+import 'package:limachayapp/services/models/response.dart';
 import 'package:limachayapp/services/services/status_service.dart';
 import './pages/log_in.dart';
 import './pages/main_home.dart';
