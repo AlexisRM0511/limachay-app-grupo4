@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:limachayapp/components/home_search.dart';
-import '../components/sue_case.dart';
+import './sue_card.dart';
+import './sue_case.dart';
+import '../pages/sue_detail.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -72,6 +74,28 @@ class HomeState extends State<Home> {
         )),
       ],
     ));
+          //SizedBox(height: 5),
+          Expanded(
+              child: ListView.builder(
+                itemCount: SueCase.samples.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return SueDetail(sueCase: SueCase.samples[index]);
+                          })
+                      );
+                    },
+                    child: SueCard(sueCase: SueCase.samples[index]),
+                  );
+                },
+              )
+          ),
+        ],
+      )
+    );
   }
 }
 

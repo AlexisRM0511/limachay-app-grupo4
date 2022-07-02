@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../components/sue_case.dart';
+import './sue_card.dart';
+import './sue_case.dart';
 
 void main() => runApp(HomeSearchPage());
 
@@ -37,7 +38,7 @@ class HomeSearchPageState extends State<HomeSearchPage> {
     );
   }
 }
-
+// TODO: Arreglar cards
 Widget groupInput(String label, Widget icon) {
   return Container(
     margin: const EdgeInsets.all(12),
