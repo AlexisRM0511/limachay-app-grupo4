@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:limachayapp/services/services/response.dart';
+import 'package:limachayapp/services/models/response.dart';
 import '../models/status_model.dart';
 
 class StatusService {
