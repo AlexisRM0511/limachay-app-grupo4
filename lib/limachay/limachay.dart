@@ -2,21 +2,22 @@ import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:limachayapp/home/components/home.dart';
-import 'package:limachayapp/home/components/profile.dart';
-import 'package:limachayapp/home/components/statistics_bk.dart';
+import 'package:limachayapp/limachay/components/home/home.dart';
+import 'package:limachayapp/limachay/components/profile/profile.dart';
+import 'package:limachayapp/limachay/components/statistics/statistics_bk.dart';
+import 'package:limachayapp/limachay/components/sue/sue.dart';
 
 const double margin = 6.0;
 
 
-class MainHome extends StatefulWidget {
-  const MainHome({Key? key}) : super(key: key);
+class Limachay extends StatefulWidget {
+  const Limachay({Key? key}) : super(key: key);
 
   @override
-  MainHomeState createState() => MainHomeState();
+  LimachayState createState() => LimachayState();
 }
 
-class MainHomeState extends State<MainHome> {
+class LimachayState extends State<Limachay> {
   int _currentPage = 0;
   final List<Series<dynamic, String>> _seriesList = [];
   final List<Widget> _page = [

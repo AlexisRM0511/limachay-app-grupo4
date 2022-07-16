@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'sue_case.dart';
+import '../sue_case.dart';
 
 class SueCard extends StatefulWidget {
   final SueCase sueCase;

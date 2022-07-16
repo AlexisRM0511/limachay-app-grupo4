@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:limachayapp/home/sue/suedetail/sue_detail.dart';
-import 'sue_case.dart';
+import 'package:limachayapp/limachay/sue/suedetail/sue_detail.dart';
+import '../sue_case.dart';
 
 const double margin = 8.0;
 

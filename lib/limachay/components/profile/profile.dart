@@ -1,10 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'sue_card.dart';
-import '../../../home/profile/profile_edit.dart';
-import '../../../home/sue/suedetail/sue_detail.dart';
-import 'sue_case.dart';
-import 'sue_card.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);

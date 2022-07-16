@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:limachayapp/limachay/limachay.dart';
 import 'package:limachayapp/signin/signin.dart';
-import 'package:limachayapp/home/main_home.dart';
-import 'package:limachayapp/signup/sign_in.dart';
+import 'package:limachayapp/signup/signup.dart';
 
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const Limachay());
+  runApp(const MainApp());
 }
 
-class Limachay extends StatelessWidget {
-  const Limachay({Key? key}) : super(key: key);
+class MainApp extends StatelessWidget {
+  const MainApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     initialRoute: '/',
     routes: {
       '/': (context) =>  const LogInForm(),
-      '/home': (context) =>  const MainHome(),
+      '/limachay': (context) =>  const Limachay(),
       '/signup': (context) =>  const SignForm(),
     },
     home: StreamBuilder<User?>(
@@ -32,7 +32,7 @@ class Limachay extends StatelessWidget {
           );
         } else {
           if (snapshot.hasData) {
-            return const MainHome();
+            return const Limachay();
           } else {
             return const LogInForm();
           }

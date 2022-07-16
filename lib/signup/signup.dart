@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:limachayapp/home/components/home.dart';
+import 'package:limachayapp/limachay/limachay.dart';
 import 'package:limachayapp/signin/utils/constants.dart';
 import 'package:limachayapp/signin/utils/styles.dart';
 
@@ -66,7 +66,7 @@ class SignFormState extends State<SignForm> {
                         Container(
                           alignment: Alignment.centerLeft,
                           margin: const EdgeInsets.only(
-                              bottom: 10.0, left: margin, right: margin),
+                              bottom: 10.0, left: 20.0, right: 20.0),
                           child: const Text(
                             ' * La contraseña debe ser algúno de los siguientes caracteres: @!%*?&',
                             style: TextStyle(
@@ -89,8 +89,8 @@ Future signUp(BuildContext context, GlobalKey<FormState> formKey) async {
           .createUserWithEmailAndPassword(
               email: emailController.text.trim(),
               password: passwordController.text.trim())
-          .then((value) => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Home())))
+          .then((value) => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Limachay())))
           .catchError((e) => {
                 Fluttertoast.showToast(
                     msg: "Error: ${e.toString()}",

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:limachayapp/home/components/home.dart';
+import 'package:limachayapp/limachay/limachay.dart';
 import 'package:limachayapp/signin/utils/constants.dart';
 import 'package:limachayapp/signin/utils/styles.dart';
 
@@ -52,7 +52,7 @@ Future signIn(BuildContext context, GlobalKey<FormState> formKey) async {
               email: emailController.text.trim(),
               password: passwordController.text.trim())
           .then((value) => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Home())))
+              context, MaterialPageRoute(builder: (context) => const Limachay())))
           .catchError((e) => Fluttertoast.showToast(
               msg: "Error: ${e.toString()}",
               toastLength: Toast.LENGTH_SHORT,
@@ -74,5 +74,5 @@ Future signIn(BuildContext context, GlobalKey<FormState> formKey) async {
 
 goSignUp(BuildContext context) {
   Navigator.push(
-      context, MaterialPageRoute(builder: (context) => const Home()));
+      context, MaterialPageRoute(builder: (context) => const Limachay()));
 }

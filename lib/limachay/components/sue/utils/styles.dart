@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:limachayapp/limachay/utils/constants.dart';
+import 'package:limachayapp/signin/utils/constants.dart';
 
 // 0: Texto | 1: Número | 2:TextoNúmero | 3: Correo | 4: Contraseña | 5: Validar Contraseña
 Widget textForm(String label, TextEditingController controller, int type) {
