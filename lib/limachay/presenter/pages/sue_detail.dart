@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './sue_edit.dart';
+import 'sue_edit.dart';
 import '../components/sue_case.dart';
 
 class SueDetail extends StatefulWidget {

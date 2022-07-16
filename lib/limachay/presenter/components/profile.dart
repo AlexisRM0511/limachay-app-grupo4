@@ -1,9 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'sue_card.dart';
 import '../pages/profile_edit.dart';
 import '../pages/sue_detail.dart';
-import './sue_case.dart';
-import './sue_card.dart';
+import 'sue_case.dart';
+import 'sue_card.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -68,6 +69,20 @@ class _ProfileState extends State<Profile> {
 
                       ),
                       child: const Text("Editar perfil"),
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        FirebaseAuth.instance.signOut();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+
+                      ),
+                      child: const Text("Cerrar Sesión"),
                     ),
                   ),
                   const SizedBox(height: 40),

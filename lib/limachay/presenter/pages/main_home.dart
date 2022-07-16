@@ -2,7 +2,7 @@ import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:limachayapp/components/statistics_bk.dart';
+import 'package:limachayapp/limachay/presenter/components/statistics_bk.dart';
 import '../components/home.dart';
 import '../components/profile.dart';
 import '../components/sue.dart';
