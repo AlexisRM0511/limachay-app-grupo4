@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:limachayapp/limachay/presenter/pages/log_in.dart';
-import 'package:limachayapp/limachay/presenter/pages/main_home.dart';
-import 'package:limachayapp/limachay/presenter/pages/sign_in.dart';
+import 'package:limachayapp/signin/signin.dart';
+import 'package:limachayapp/home/main_home.dart';
+import 'package:limachayapp/signup/sign_in.dart';
 
 
 Future main() async {

@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:limachayapp/limachay/presenter/components/home.dart';
-import 'package:limachayapp/limachay/utils/styles.dart';
-import 'package:limachayapp/limachay/utils/constants.dart';
+import 'package:limachayapp/home/components/home.dart';
+import 'package:limachayapp/signin/utils/constants.dart';
+import 'package:limachayapp/signin/utils/styles.dart';
 
 class LogInForm extends StatefulWidget {
   const LogInForm({Key? key}) : super(key: key);

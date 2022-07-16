@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:limachayapp/limachay/model/model_response.dart';
-import '../limachay/model/model_status.dart';
+import 'package:limachayapp/services/model/model_response.dart';
 
 class StatusService {
   static const String url = 'https://limachay.herokuapp.com';

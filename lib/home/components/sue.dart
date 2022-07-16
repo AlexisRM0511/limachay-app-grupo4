@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../components/sue_case.dart';
+import 'package:limachayapp/home/sue/suedetail/sue_detail.dart';
+import 'sue_case.dart';
 
-class SueEdit extends StatefulWidget {
-  final SueCase sueCase;
-  const SueEdit({Key? key, required this.sueCase}) : super(key: key);
+const double margin = 8.0;
+
+class Sue extends StatefulWidget {
+  const Sue({Key? key}) : super(key: key);
 
   @override
-  _SueEditState createState() => _SueEditState();
+  _SueState createState() => _SueState();
 }
 
-class _SueEditState extends State<SueEdit> {
+class _SueState extends State<Sue> {
   final _formKey = GlobalKey<FormState>();
   late Map _formDataController;
   Map data = {
@@ -25,15 +27,6 @@ class _SueEditState extends State<SueEdit> {
 
   @override
   void initState() {
-    Map data = {
-      'subject': widget.sueCase.subject,
-      'description': widget.sueCase.description,
-      'when': widget.sueCase.when,
-      'where': widget.sueCase.where,
-      'publisher': widget.sueCase.publisher,
-      'iKnow': widget.sueCase.iKnow,
-      'images': widget.sueCase.images,
-    };
     _formDataController = {
       'subject': TextEditingController(text: data['subject']),
       'description': TextEditingController(text: data['description']),
@@ -43,10 +36,8 @@ class _SueEditState extends State<SueEdit> {
     };
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
-
     Widget textFormField(String label, String controller) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -161,21 +152,11 @@ class _SueEditState extends State<SueEdit> {
       );
     }
 
-    Widget customCheckbox(String label, bool initValue) {
-      return Container(
-        //margin: const EdgeInsets.only(top: margin, bottom: margin),
-          margin: const EdgeInsets.all(12),
-          child: CheckboxListTile(
-            contentPadding: const EdgeInsets.all(0),
-            title: Text(label, style: const TextStyle(color: Colors.grey)),
-            value: data['iKnow'],
-            onChanged: (bool? value) {
-              setState(() {
-                data['iKnow'] = value;
-              });
-            },
-          )
-      );
+////
+    DateTime toISODate(String date) {
+      List <String> dateList = date.split("/");
+      String isoDate = "${dateList[2]}-${dateList[1]}-${dateList[0]}";
+      return DateTime.parse(isoDate);
     }
 
     Widget submitBtn(
@@ -186,8 +167,24 @@ class _SueEditState extends State<SueEdit> {
           child: TextButton(
               onPressed: () {
                 if (key.currentState!.validate()) {
+                  data = {
+                    ...data,
+                    'subject': _formDataController['subject'].text,
+                    'description': _formDataController['description'].text,
+                    'when': toISODate(_formDataController['when'].text),
+                    'where': _formDataController['where'].text,
+                    'publisher': _formDataController['publisher'].text,
+                  };
                   ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Processing Data')));
+                      const SnackBar(content: Text('Processing Data'))
+                  );
+                  SueCase.samples.add(data as SueCase);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SueDetail(sueCase: data as SueCase),
+                    ),
+                  );
                 }
               },
               style: TextButton.styleFrom(
@@ -201,10 +198,7 @@ class _SueEditState extends State<SueEdit> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(
-          color: Colors.black,
-        ),
-        title: const Text('Editar denuncia'),
+        title: const Text('Denunciar'),
         titleTextStyle: const TextStyle(
           color: Colors.black,
           fontSize: 27,
@@ -250,19 +244,18 @@ class _SueEditState extends State<SueEdit> {
                         }
                     ),
                   ),
-                  photoListAdd(widget.sueCase.images),
+                  photoListAdd(data['images']),
                   Row(
                     children: [
                       const Text('Conozco al denunciado'),
                       Checkbox(value: data['iKnow'],
                           onChanged: (bool? value) {
-                        if (value != null) {
-                          setState(() {
-                            data['iKnow'] = value;
-                          });
-                        }
+                            if (value != null) {
+                              setState(() {
+                                data['iKnow'] = value;
+                              });
+                            }
                           })
-
                     ],
                   ),
                   submitBtn("Guardar", const Color(0xFF79E070), _formKey)

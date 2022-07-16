@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'sue_card.dart';
-import '../pages/profile_edit.dart';
-import '../pages/sue_detail.dart';
+import '../../../home/profile/profile_edit.dart';
+import '../../../home/sue/suedetail/sue_detail.dart';
 import 'sue_case.dart';
 import 'sue_card.dart';
 
