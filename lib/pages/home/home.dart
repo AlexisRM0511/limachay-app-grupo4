@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:limachayapp/components/home_search.dart';
-import './sue_card.dart';
-import './sue_case.dart';
-import '../pages/sue_detail.dart';
+import 'package:limachayapp/pages/search/home_search.dart';
+import '../sue/sue_card.dart';
+import '../../components/sue_case.dart';
+import '../sue/sue_detail/sue_detail.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

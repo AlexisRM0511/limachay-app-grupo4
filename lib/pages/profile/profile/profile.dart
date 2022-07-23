@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'sue_card.dart';
-import '../pages/profile_edit.dart';
-import '../pages/sue_detail.dart';
-import './sue_case.dart';
-import './sue_card.dart';
+import '../../sue/sue_card.dart';
+import '../../profile_edit/profile_edit.dart';
+import '../../sue/sue_detail/sue_detail.dart';
+import '../../../components/sue_case.dart';
+import '../../sue/sue_card.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
