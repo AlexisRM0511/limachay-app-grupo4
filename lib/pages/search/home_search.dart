@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../sue/sue_card.dart';
-import '../../components/sue_case.dart';
 
 void main() => runApp(HomeSearchPage());
 

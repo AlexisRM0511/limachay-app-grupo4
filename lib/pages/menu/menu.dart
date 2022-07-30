@@ -2,10 +2,10 @@ import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:limachayapp/components/statistics_bk.dart';
+import 'package:limachayapp/pages/profile/profile/profile.dart';
+import 'package:limachayapp/pages/staticts/statistics_bk.dart';
+import 'package:limachayapp/pages/sue/sue/sue.dart';
 import '../home/home.dart';
-i'../profile/profile.dart'.dart';
-import '../sue/sue/sue.dart';
 import '../staticts/statistics.dart';
 
 const double margin = 6.0;

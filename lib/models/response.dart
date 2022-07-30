@@ -1,4 +1,5 @@
-import 'package:limachayapp/services/models/status_model.dart';
+
+import 'package:limachayapp/models/status_model.dart';
 
 class Response {
   Response({

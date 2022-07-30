@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-part 'signuo_event.dart';
-part 'signuo_state.dart';
+part 'signup_event.dart';
+part 'signup_state.dart';
 
-class SignuoBloc extends Bloc<SignuoEvent, SignuoState> {
+class SignuoBloc extends Bloc<SignupEvent, SignuoState> {
   SignuoBloc() : super(SignuoInitial()) {
-    on<SignuoEvent>((event, emit) {
+    on<SignupEvent>((event, emit) {
       // TODO: implement event handler
     });
   }

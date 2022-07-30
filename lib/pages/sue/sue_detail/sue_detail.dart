@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:limachayapp/pages/sue/sue_case.dart';
 import '../sue_edit/sue_edit.dart';
-import '../../../components/sue_case.dart';
 
 class SueDetail extends StatefulWidget {
   final SueCase sueCase;

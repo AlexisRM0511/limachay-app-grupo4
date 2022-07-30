@@ -1,4 +1,4 @@
-part of 'signuo_bloc.dart';
+part of 'signup_bloc.dart';
 
 @immutable
 abstract class SignuoState {}
