@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../sue/sue_card.dart';
 import '../../profile_edit/profile_edit.dart';
 import '../../sue/sue_detail/sue_detail.dart';
-import '../../../components/sue_case.dart';
 import '../../sue/sue_card.dart';
 
 class Profile extends StatefulWidget {
